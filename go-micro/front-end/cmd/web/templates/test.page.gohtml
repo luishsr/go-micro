@@ -46,7 +46,7 @@
 
         fetch("http:\/\/localhost:8080", body)
         .then((response) => response.json())
-        .then(data) => {
+        .then((data) => {
             sent.innerHTML = "empty post request";
             received.innerHTML = JSON.stringify(data, undefined, 4);
 
@@ -56,7 +56,7 @@
             } else {
                 output.innerHTML += `<br><strong>Response from broker service<strong>:${data.message}`;
             }
-        }
+        })
         .catch((error) => {
             output.innerHTML += `<br><br>Error: ` + error;
         })
