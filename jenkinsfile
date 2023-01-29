@@ -1,0 +1,40 @@
+pipeline {
+    // install golang 1.14 on Jenkins node
+    agent any
+    tools {
+        go 'go1.14'
+    }
+    environment {
+        GO114MODULE = 'on'
+        CGO_ENABLED = 0 
+        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
+    }
+    stages {
+        stage("unit-test") {
+            steps {
+								//dir('micro-go/project/')
+                echo 'UNIT TEST EXECUTION STARTED'
+                //sh 'make unit-tests'
+            }
+        }
+
+        stage("build") {
+            steps {
+                echo 'BUILD EXECUTION STARTED'
+								dir('micro-go/project/')
+                sh 'make stop'
+								sh 'make down'
+								sh 'make up_build'
+            }
+        }
+        stage("start") {
+            agent any
+            steps {
+                echo 'BUILD EXECUTION STARTED'
+								dir('micro-go/project/')
+								sh 'make start'						
+                }
+            }
+        }
+    }
+}
