@@ -1,5 +1,5 @@
 echo 'Going into the projects directory'
-cd D:/development/projects/go-micro/go-micro/project
+cd home/luis/go-micro/go-micro
 echo 'Running make stop'
 make stop
 echo 'Running make down'
