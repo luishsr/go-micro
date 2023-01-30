@@ -7,5 +7,3 @@ make down
 echo 'Building...'
 make up_build
 echo 'Build Completed!'
-sh 'JENKINS_NODE_COOKIE=dontKillMe myProcess'
-make start
