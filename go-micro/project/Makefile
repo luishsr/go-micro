@@ -49,5 +49,5 @@ start: build_front
 ## stop: stop the front end
 stop:
 	@echo Stopping front end...
-	@taskkill /IM "${FRONT_END_BINARY}" /F
+	@taskkill /IM "${FRONT_END_BINARY}" /F /fi "memusage gt 2"
 	@echo "Stopped front end!"

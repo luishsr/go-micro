@@ -8,7 +8,7 @@ services:
       dockerfile: ./../broker-service/broker-service.dockerfile
     restart: always
     ports:
-      - "8080:80"
+      - "8090:80"
     deploy:
       mode: replicated
       replicas: 1
@@ -26,7 +26,6 @@ services:
     environment:
       DSN: "host=postgres port=5432 user=postgres password=password dbname=users sslmode=disable timezone=UTC connect_timeout=5"
 
-
   postgres:
     image: 'postgres:14.0'
     ports:
@@ -41,3 +40,14 @@ services:
       POSTGRES_DB: users
     volumes:
       - ./db-data/postgres/:/var/lib/postgresql/micro-go
+
+  front-end-app:
+    build:
+      context: ./../front-end
+      dockerfile: ./../front-end/front-end.dockerfile
+    restart: always
+    ports:
+      - "8087:80"
+    deploy:
+      mode: replicated
+      replicas: 1
